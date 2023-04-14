@@ -3920,7 +3920,7 @@ namespace swig {
 
 namespace std {
   template <>
-  struct less <PyObject *>: public binary_function<PyObject *, PyObject *, bool>
+  struct less <PyObject *>: public __binary_function<PyObject *, PyObject *, bool>
   {
     bool
     operator()(PyObject * v, PyObject *w) const
@@ -3945,7 +3945,7 @@ namespace std {
   };
 
   template <>
-  struct less <swig::SwigPtr_PyObject>: public binary_function<swig::SwigPtr_PyObject, swig::SwigPtr_PyObject, bool>
+  struct less <swig::SwigPtr_PyObject>: public __binary_function<swig::SwigPtr_PyObject, swig::SwigPtr_PyObject, bool>
   {
     bool
     operator()(const swig::SwigPtr_PyObject& v, const swig::SwigPtr_PyObject& w) const
@@ -3955,7 +3955,7 @@ namespace std {
   };
 
   template <>
-  struct less <swig::SwigVar_PyObject>: public binary_function<swig::SwigVar_PyObject, swig::SwigVar_PyObject, bool>
+  struct less <swig::SwigVar_PyObject>: public __binary_function<swig::SwigVar_PyObject, swig::SwigVar_PyObject, bool>
   {
     bool
     operator()(const swig::SwigVar_PyObject& v, const swig::SwigVar_PyObject& w) const
