@@ -110,6 +110,7 @@ void CSF::readPointsFromFile(std::string filename) {
 
 void CSF::do_filtering(std::vector<int>& groundIndexes,
                        std::vector<int>& offGroundIndexes,
+                       std::vector<std::vector<std::vector<double>>>& groundParticleCoords,
                        bool              exportCloth) {
     // Terrain
     std::cout << "[" << this->index << "] Configuring terrain..." << std::endl;
@@ -173,6 +174,15 @@ void CSF::do_filtering(std::vector<int>& groundIndexes,
     if (params.bSloopSmooth) {
         std::cout << "[" << this->index << "]  - post handle..." << std::endl;
         cloth.movableFilter();
+    }
+
+    groundParticleCoords.resize(cloth.num_particles_width);
+
+    for (int x = 0; x < cloth.num_particles_width; x++) {
+        groundParticleCoords[x].resize(cloth.num_particles_height);
+        for (int y = 0; y < cloth.num_particles_height; y++) {
+            groundParticleCoords[x][y] = {cloth.getParticle(x, y)->getPos().f[0], cloth.getParticle(x, y)->getPos().f[2], -cloth.getParticle(x, y)->getPos().f[1]};
+        }
     }
 
     if (exportCloth)

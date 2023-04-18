@@ -104,6 +104,7 @@ public:
     // pointcloud
     void do_filtering(std::vector<int>& groundIndexes,
                       std::vector<int>& offGroundIndexes,
+                      std::vector<std::vector<std::vector<double>>>& groundParticleCoords,
                       bool              exportCloth = false);
 
 private:
